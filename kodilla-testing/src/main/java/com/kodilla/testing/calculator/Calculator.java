@@ -9,23 +9,25 @@ public class Calculator {
         this.b = b;
     }
 
-    public int getA() {
+    private int getA() {
         return a;
     }
 
-    public int getB() {
+    private int getB() {
         return b;
     }
 
     public int add() {
-        int suma;
+        int suma = 0;
         suma = getA() + getB();
         return suma;
     }
 
     public int substract() {
-        int substract;
+        int substract = 0;
         substract = getA() - getB();
         return substract;
     }
+
+
 }
