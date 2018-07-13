@@ -2,7 +2,7 @@ package com.kodilla.testing.shape;
 
 import java.util.ArrayList;
 
-public class ShapeCollector {
+public class ShapeCollector{
 
     private ArrayList<Shape> shapes;
 
