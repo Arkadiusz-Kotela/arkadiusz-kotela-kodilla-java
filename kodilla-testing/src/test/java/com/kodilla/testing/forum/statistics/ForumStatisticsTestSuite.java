@@ -70,7 +70,7 @@ public class ForumStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatistics1() {
         //Given
-        List<String> usersList = userListGenerator(100);
+        List<String> usersList = userListGenerator(1234);
         int comments = 13726;
         int posts = 567;
 
