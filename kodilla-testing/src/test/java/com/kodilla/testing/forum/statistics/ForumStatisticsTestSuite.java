@@ -13,6 +13,14 @@ public class ForumStatisticsTestSuite {
 
     private static int testCounter = 0;
 
+    private List<String> userListGenerator(int numberOfUsers) {
+        List<String> usersList = new ArrayList<>();
+        for (int i = 0; i < numberOfUsers; i++) {
+            usersList.add("User" + i);
+        }
+        return usersList;
+    }
+
     @BeforeClass
     public static void beforeAllTests() {
         System.out.println("This is the beginning of tests.");
@@ -35,10 +43,7 @@ public class ForumStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatistics() {
         //Given
-        List<String> usersList = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            usersList.add("User" + i);
-        }
+        List<String> usersList = userListGenerator(100);
         int comments = 10;
         int posts = 10;
 
@@ -65,11 +70,7 @@ public class ForumStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatistics1() {
         //Given
-        List<String> usersList = new ArrayList<>();
-        for (int i = 0; i < 1234; i++) {
-            usersList.add("User" + i);
-        }
-
+        List<String> usersList = userListGenerator(100);
         int comments = 13726;
         int posts = 567;
 
