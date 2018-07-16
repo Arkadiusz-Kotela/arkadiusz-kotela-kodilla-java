@@ -13,14 +13,6 @@ public class ForumStatisticsTestSuite {
 
     private static int testCounter = 0;
 
-    private List<String> userListGenerator(int numberOfUsers) {
-        List<String> usersList = new ArrayList<>();
-        for (int i = 0; i < numberOfUsers; i++) {
-            usersList.add("User" + i);
-        }
-        return usersList;
-    }
-
     @BeforeClass
     public static void beforeAllTests() {
         System.out.println("This is the beginning of tests.");
@@ -52,9 +44,7 @@ public class ForumStatisticsTestSuite {
         when(statisticMock.postCount()).thenReturn(posts);
 
         ForumStatistics forumStatistics = new ForumStatistics(statisticMock);
-        forumStatistics.setNumberOfForumUsers(statisticMock);
-        forumStatistics.setNumberOfForumPosts(statisticMock);
-        forumStatistics.setNumberOfForumComments(statisticMock);
+        forumStatistics.calculateAdvStatistics(statisticMock);
 
         //When
         int numberOfForumUsers = forumStatistics.getNumberOfForumUsers();
@@ -89,6 +79,14 @@ public class ForumStatisticsTestSuite {
         //Then
         Assert.assertEquals(11.13, avgComPerUser, 0.01);
         Assert.assertEquals(0.46, avgPostPerUser, 0.01);
-        Assert.assertEquals(24.21, avgComPerPost,0.01);
+        Assert.assertEquals(24.21, avgComPerPost, 0.01);
+    }
+
+    private List<String> userListGenerator(int numberOfUsers) {
+        List<String> usersList = new ArrayList<>();
+        for (int i = 0; i < numberOfUsers; i++) {
+            usersList.add("User" + i);
+        }
+        return usersList;
     }
 }

@@ -10,22 +10,13 @@ public class ForumStatistics {
     private double averageNumberOfCommentsPerForumUser;
     private double averageNumberOfCommentsPerPost;
 
-    public void setNumberOfForumUsers(Statistics statistics) {
-        this.numberOfForumUsers = statistics.userNames().size();
-    }
-
-    public void setNumberOfForumPosts(Statistics statistics){
-        this.numberOfForumPosts = statistics.postCount();
-    }
-
-    public void setNumberOfForumComments(Statistics statistics) {
-        this.numberOfForumComments = statistics.commentsCount();
-    }
 
     public void calculateAdvStatistics(Statistics statistics) {
-        setNumberOfForumComments(statistics);
-        setNumberOfForumPosts(statistics);
-        setNumberOfForumUsers(statistics);
+
+        this.numberOfForumUsers = statistics.userNames().size();
+        this.numberOfForumPosts = statistics.postCount();
+        this.numberOfForumComments = statistics.commentsCount();
+
         averageNumberOfPostsPerForumUser = (double) numberOfForumPosts / numberOfForumUsers;
         averageNumberOfCommentsPerForumUser = (double) numberOfForumComments / numberOfForumUsers;
         averageNumberOfCommentsPerPost = (double) numberOfForumComments / numberOfForumPosts;
