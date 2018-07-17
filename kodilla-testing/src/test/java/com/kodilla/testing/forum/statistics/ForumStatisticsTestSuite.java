@@ -1,7 +1,9 @@
 package com.kodilla.testing.forum.statistics;
 
 import org.junit.*;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ForumStatisticsTestSuite {
 
     private static int testCounter = 0;
@@ -30,10 +33,10 @@ public class ForumStatisticsTestSuite {
     }
 
     @Mock
-    Statistics statisticMock = mock(Statistics.class);
+    Statistics statisticMock;
 
     @Test
-    public void testCalculateAdvStatistics1() {
+    public void testCalculateAdvStatisticsZeroPosts() {
         //Given
         List<String> usersList = userListGenerator(1234);
         int comments = 13726;
@@ -57,7 +60,7 @@ public class ForumStatisticsTestSuite {
         Assert.assertEquals(0.0, avgComPerPost, 0.00);
     }
     @Test
-    public void testCalculateAdvStatistics2() {
+    public void testCalculateAdvStatistics1000Posts() {
         //Given
         List<String> usersList = userListGenerator(1234);
         int comments = 13726;
@@ -82,7 +85,7 @@ public class ForumStatisticsTestSuite {
     }
 
     @Test
-    public void testCalculateAdvStatistics3() {
+    public void testCalculateAdvStatisticsZeroComments() {
         //Given
         List<String> usersList = userListGenerator(1234);
         int comments = 0;
@@ -107,7 +110,7 @@ public class ForumStatisticsTestSuite {
     }
 
     @Test
-    public void testCalculateAdvStatistics4() {
+    public void testCalculateAdvStatisticsCommentsLessThanPosts() {
         //Given
         List<String> usersList = userListGenerator(1234);
         int comments = 137;
@@ -132,7 +135,7 @@ public class ForumStatisticsTestSuite {
     }
 
     @Test
-    public void testCalculateAdvStatistics5() {
+    public void testCalculateAdvStatisticsCommentsMoreThanPosts1() {
         //Given
         List<String> usersList = userListGenerator(1234);
         int comments = 568;
@@ -157,7 +160,7 @@ public class ForumStatisticsTestSuite {
     }
 
     @Test
-    public void testCalculateAdvStatistics6() {
+    public void testCalculateAdvStatisticsZeroUsers() {
         //Given
         List<String> usersList = userListGenerator(0);
         int comments = 13726;
@@ -182,7 +185,7 @@ public class ForumStatisticsTestSuite {
     }
 
     @Test
-    public void testCalculateAdvStatistics7() {
+    public void testCalculateAdvStatistics100Users() {
         //Given
         List<String> usersList = userListGenerator(100);
         int comments = 13726;
