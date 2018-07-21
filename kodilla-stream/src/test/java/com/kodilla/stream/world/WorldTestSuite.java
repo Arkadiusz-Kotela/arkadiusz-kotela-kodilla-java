@@ -9,7 +9,7 @@ import java.util.List;
 
 public class WorldTestSuite {
     @Test
-    public void testGetPeopleQuantity(){
+    public void testGetPeopleQuantity() {
         //Given
         List<List<Country>> world = new ArrayList<>();
         List<Country> continent1 = new ArrayList<>();
@@ -40,13 +40,11 @@ public class WorldTestSuite {
         world.add(continent2);
         world.add(continent3);
 
-
         //When
-        BigDecimal worldPopulation = world.stream() // Stream<List<Country>>
+        BigDecimal worldPopulation = world.stream() // Stream List<List<Country>>
                 .flatMap(List::stream) // Stream<Country>
                 .map(Country::getPopulation) //Stream<BigDecimal>
                 .reduce(BigDecimal.ZERO, BigDecimal::add); //BigDecimal;
-
 
         //Then
         BigDecimal expectedWorldPopulation = new BigDecimal("11106");

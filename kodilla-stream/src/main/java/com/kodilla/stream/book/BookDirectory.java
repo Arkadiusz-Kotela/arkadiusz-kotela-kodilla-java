@@ -1,4 +1,4 @@
-package com.kodilla.stream.immutable;
+package com.kodilla.stream.book;
 
 import java.util.ArrayList;
 import java.util.List;

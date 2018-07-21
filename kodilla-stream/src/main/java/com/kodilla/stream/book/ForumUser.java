@@ -1,4 +1,4 @@
-package com.kodilla.stream.immutable;
+package com.kodilla.stream.book;
 
 public final class ForumUser {
     private final String name;
