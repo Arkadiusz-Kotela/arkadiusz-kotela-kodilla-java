@@ -4,8 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -136,6 +138,22 @@ public class BoardTestSuite {
 
         //Then
         Assert.assertEquals(0, longTasks);
+    }
+
+    @Test
+    public void testAddTaskListAverageWorkingOnTask(){
+        //Given
+        Board project = prepareTestData();
+
+        //Where
+        double average = project.getTaskLists().stream()
+                .flatMap(taskList -> taskList.getTasks().stream())
+                .map(Task::getCreated)
+                .collect(Collectors.averagingLong(value -> ChronoUnit.DAYS.between(value, LocalDate.now())));
+
+        //Then
+        Assert.assertEquals(14.17, average, 0.01);
+
     }
 
 }
