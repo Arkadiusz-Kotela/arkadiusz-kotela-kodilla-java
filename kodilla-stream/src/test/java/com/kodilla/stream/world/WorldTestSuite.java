@@ -11,7 +11,7 @@ public class WorldTestSuite {
     @Test
     public void testGetPeopleQuantity() {
         //Given
-        List<List<Country>> world = new ArrayList<>();
+
         List<Country> continent1 = new ArrayList<>();
         List<Country> continent2 = new ArrayList<>();
         List<Country> continent3 = new ArrayList<>();
@@ -36,15 +36,15 @@ public class WorldTestSuite {
         continent3.add(country8);
         continent3.add(country9);
 
+        World world = new World();
         world.add(continent1);
         world.add(continent2);
         world.add(continent3);
 
+
         //When
-        BigDecimal worldPopulation = world.stream() // Stream List<List<Country>>
-                .flatMap(List::stream) // Stream<Country>
-                .map(Country::getPopulation) //Stream<BigDecimal>
-                .reduce(BigDecimal.ZERO, BigDecimal::add); //BigDecimal;
+
+        BigDecimal worldPopulation = world.getPeopleQuantity();
 
         //Then
         BigDecimal expectedWorldPopulation = new BigDecimal("11106");

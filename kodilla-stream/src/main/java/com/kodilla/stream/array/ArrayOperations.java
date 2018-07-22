@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 public interface ArrayOperations {
 
-    default double getAverage(int[] numbers) {
+    static double getAverage(int[] numbers) {
 
         IntStream.rangeClosed(1, numbers.length)
                 .forEach(System.out::println);
