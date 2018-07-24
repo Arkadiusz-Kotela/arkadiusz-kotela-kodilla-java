@@ -15,14 +15,13 @@ public class RpsRunner {
          * 6. run()
          */
 
+
         // 1 + 3
         Human human = new Human(getPlayerName());
         // 2.
-        getNumberOfWinsToCompleteGame();
-        // 3.
         Computer computer = new Computer();
-        // 4.
-        Game game = new Game(0);
+        // 2 + 4
+        Game game = new Game(getNumberOfWinsToCompleteGame());
         // 5.
         GameProcessor gp = new GameProcessor(game, computer, human);
         // 6.

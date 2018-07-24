@@ -4,9 +4,10 @@ package com.kodilla.rps;
 public class Game {
     private int actualWinsCounter;
     private int[][] compareMoveTable = {
+            //
             { 0, 1, -1},
-            { 1, 0, -1},
-            {-1, 1,  0}
+            { -1, 0, 1},
+            {1, -1,  0}
     };
 
     public Game(int actualWinsCounter) {
