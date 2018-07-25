@@ -2,7 +2,7 @@ package com.kodilla.rps;
 
 import java.util.Scanner;
 
-public class CommandAndControl {
+public class RuleMaker {
     private static final Scanner SC = new Scanner(System.in);
 
     public static String getPlayerName() {

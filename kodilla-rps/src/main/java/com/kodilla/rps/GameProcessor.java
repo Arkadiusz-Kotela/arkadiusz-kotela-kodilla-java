@@ -1,7 +1,5 @@
 package com.kodilla.rps;
 
-import static com.kodilla.rps.CommandAndControl.displayInfo;
-
 //Processes class Game implementing game logic
 public class GameProcessor {
     private Game game;
@@ -47,8 +45,7 @@ public class GameProcessor {
                 System.out.println();
             }
 
-            if (!(computer.getPoints() <= game.getActualWinsCounter() && human.getPoints() <= game.getActualWinsCounter())) {
-                displayInfo("Good Bye!!!");
+            if (!(computer.getPoints() <= game.getActualWinsCounter() && human.getPoints() <= game.getActualWinsCounter())) { ;
                 return;
             }
         }

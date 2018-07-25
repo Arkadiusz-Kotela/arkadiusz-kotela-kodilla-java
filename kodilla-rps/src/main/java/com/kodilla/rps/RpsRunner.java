@@ -1,8 +1,7 @@
 package com.kodilla.rps;
 
-import static com.kodilla.rps.CommandAndControl.getNumberOfWinsToCompleteGame;
-import static com.kodilla.rps.CommandAndControl.getPlayerName;
-import static sun.misc.PostVMInitHook.run;
+import static com.kodilla.rps.RuleMaker.getNumberOfWinsToCompleteGame;
+import static com.kodilla.rps.RuleMaker.getPlayerName;
 
 public class RpsRunner {
     public static void main(String[] args) {
