@@ -4,19 +4,19 @@ public abstract class Player {
     private final String name;
     private int points = 0;
 
-    public Player(String name) {
+    Player(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void incrementPoints() {
+    void incrementPoints() {
         points++;
     }
 
-    public int getPoints() {
+    int getPoints() {
         return points;
     }
 

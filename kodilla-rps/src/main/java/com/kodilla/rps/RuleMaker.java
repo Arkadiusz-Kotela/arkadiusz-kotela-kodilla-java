@@ -10,17 +10,14 @@ class RuleMaker {
         return SC.nextLine();
     }
 
-
     static int getNumberOfWinsToCompleteGame() {
         System.out.print("Enter number of wins to complete the game (1-100): ");
         int number = enteredValueChecker();
-
 
         while (number <= 0 || number > 100) {
             System.out.println("Invalid entry. Please enter value between 1 -100");
             number = SC.nextInt();
         }
-
         return number - 1;
     }
 
@@ -36,12 +33,10 @@ class RuleMaker {
                 end = true;
             }
         } while (!end);
-
         return value;
     }
 
-
-    void gameScores(Game game, Human human, Computer computer) {
+    static void gameScores(Game game, Human human, Computer computer) {
         int winner = game.whoWin(human.getMove(), computer.getMove());
 
         if (winner == 1) {
@@ -74,6 +69,6 @@ class RuleMaker {
             System.out.println("AI points: " + computer.getPoints());
             System.out.println();
         }
-
     }
+
 }

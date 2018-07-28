@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class Computer extends Player {
     private Random random = new Random();
-    private int points = 0;
-
 
     Computer() {
         super("Computer");

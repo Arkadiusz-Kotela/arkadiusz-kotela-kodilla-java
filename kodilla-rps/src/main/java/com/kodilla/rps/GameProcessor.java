@@ -6,26 +6,30 @@ class GameProcessor {
     private Computer computer;
     private Human human;
     private RuleMaker ruleMaker;
+    private Menu menu;
 
-
-    GameProcessor(Game game, Computer computer, Human human, RuleMaker ruleMaker) {
+    GameProcessor(Game game, Computer computer, Human human, RuleMaker ruleMaker, Menu menu) {
         this.game = game;
         this.computer = computer;
         this.human = human;
         this.ruleMaker = ruleMaker;
+        this.menu = menu;
     }
 
     void run() {
-        boolean end = false;
+        menu.runInitialMenu();
 
-        while (!end) {
-
-            ruleMaker.gameScores(game, human, computer);
-
+        while (true) {
+            RuleMaker.gameScores(game, human, computer);
             if (!(computer.getPoints() <= game.getActualWinsCounter() && human.getPoints() <= game.getActualWinsCounter())) {
                 return;
             }
         }
     }
-
 }
+
+
+
+
+
+
