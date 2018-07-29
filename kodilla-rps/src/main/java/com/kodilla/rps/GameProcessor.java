@@ -22,7 +22,15 @@ class GameProcessor {
         while (true) {
             RuleMaker.gameScores(game, human, computer);
             if (!(computer.getPoints() <= game.getActualWinsCounter() && human.getPoints() <= game.getActualWinsCounter())) {
-                return;
+                if(!menu.runGameSummaryMenu()) {
+                    return;
+                } else {
+                    menu.runInitialMenu();
+                    computer.setPoints(0);
+                    human.setPoints(0);
+                    game.setActualWinsCounter(RuleMaker.getNumberOfWinsToCompleteGame());
+                    RuleMaker.gameScores(game, human, computer);
+                }
             }
         }
     }

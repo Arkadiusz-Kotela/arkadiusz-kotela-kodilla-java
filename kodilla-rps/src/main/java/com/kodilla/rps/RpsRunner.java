@@ -7,7 +7,7 @@ public class RpsRunner {
         Computer computer = new Computer();
         RuleMaker ruleMaker = new RuleMaker();
         Game game = new Game(RuleMaker.getNumberOfWinsToCompleteGame());
-        Menu menu = new Menu();
+        Menu menu = new Menu(human, computer);
         GameProcessor gp = new GameProcessor(game, computer, human, ruleMaker, menu);
         gp.run();
 

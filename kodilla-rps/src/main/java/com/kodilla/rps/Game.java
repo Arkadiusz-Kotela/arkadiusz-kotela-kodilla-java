@@ -18,6 +18,10 @@ class Game {
         return actualWinsCounter;
     }
 
+    public void setActualWinsCounter(int actualWinsCounter) {
+        this.actualWinsCounter = actualWinsCounter;
+    }
+
     //whoWin method establishing who win using method getMove();
     int whoWin(int humanMove, int computerMove) {
         return compareMoveTable[humanMove][computerMove];

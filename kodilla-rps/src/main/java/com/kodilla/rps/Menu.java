@@ -1,12 +1,16 @@
 package com.kodilla.rps;
 
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
 import java.util.Scanner;
 
 class Menu {
-
+    private Human human;
+    private Computer computer;
     private Scanner SC = new Scanner(System.in);
+
+    Menu(Human human, Computer computer) {
+        this.human = human;
+        this.computer = computer;
+    }
 
     void runInitialMenu() {
         System.out.println("Game menu:");
@@ -25,6 +29,13 @@ class Menu {
 
     boolean runGameSummaryMenu() {
         do {
+            System.out.println();
+            if (human.getPoints() > computer.getPoints()){
+                System.out.println(human.getName() + " WON: " + human.getPoints() + " to " + computer.getPoints());
+            }else {
+                System.out.println(computer.getName() + " WON: " + computer.getPoints() + " to " + human.getPoints());
+            }
+            System.out.println();
             System.out.println("Current game ahs been completed");
             System.out.println("What do you want to do now?");
             System.out.println("Choose x - end of the game or n - new game.");
