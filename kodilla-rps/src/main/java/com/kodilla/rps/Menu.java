@@ -28,22 +28,30 @@ class Menu {
     }
 
     boolean runGameSummaryMenu() {
+        //loop do{}while returning boolean to be used when condition in class GameProcessor return value "true"
         do {
             System.out.println();
+
+            //printing out the winner of the game
             if (human.getPoints() > computer.getPoints()){
                 System.out.println(human.getName() + " WON: " + human.getPoints() + " to " + computer.getPoints());
             }else {
                 System.out.println(computer.getName() + " WON: " + computer.getPoints() + " to " + human.getPoints());
             }
             System.out.println();
+
+            //printing out options' menu
             System.out.println("Current game ahs been completed");
             System.out.println("What do you want to do now?");
             System.out.println("Choose x - end of the game or n - new game.");
             String choice = SC.next();
+
+            //option choice between game termination and ne game
             switch (choice) {
                 case "x":
                     System.out.println("Do you want to exit?");
                     if (SC.next().toLowerCase().equals("y")) {
+                        System.out.println("Thank you for playing. Bye, bye ...");
                         System.exit(1);
                     }
                     break;
