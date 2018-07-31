@@ -1,46 +1,25 @@
 package com.kodilla.rps;
 
-import java.util.Scanner;
+class CheatProcessor {
 
-class RuleMaker {
-    private static final Scanner SC = new Scanner(System.in);
+    private static int cheatMove;
 
-    static String getPlayerName() {
-        System.out.print("Enter your name please: ");
-        return SC.nextLine();
-    }
+    private static int cheatMove(int [][] winsArray, int move) {
 
-    static int getNumberOfWinsToCompleteGame() {
-        System.out.println("Enter number of wins to complete the game (1-100): ");
-        int number = enteredValueChecker();
-
-        while (number <= 0 || number > 100) {
-            System.out.println("Invalid entry. Please enter value between 1 -100");
-            number = SC.nextInt();
-        }
-        return number - 1;
-    }
-
-    //static method evaluating entered values making sure they are integers
-    static int enteredValueChecker() {
-        boolean end = false;
-        int value = 0;
-        do {
-            if (!SC.hasNextInt()) {
-                System.out.print("Non numeric value. An integer please: ");
-                SC.next();
-            } else {
-                value = SC.nextInt();
-                end = true;
+        for (int i = 0; i < 3 ; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (winsArray[move][j] == -1) {
+                    cheatMove = j;
+                }
             }
-        } while (!end);
-        return value;
+        }
+        return cheatMove;
     }
 
-    // method designed to play one round rps
-    static void gameScores(Game game, Human human, Computer computer) {
+    // method designed to play one cheat round rps
+    static void cheatGameScores(Game game, Human human, Computer computer) {
         int humanMove = human.getMove();
-        int computerMove = computer.getMove();
+        int cheatMove = cheatMove(game.getMoveCompareArray(), humanMove);
 
         // displaying names of the human moves
         switch (humanMove) {
@@ -55,7 +34,7 @@ class RuleMaker {
         }
 
         // displaying names of the computer moves
-        switch (computerMove) {
+        switch (cheatMove) {
             case 0:
                 System.out.printf("%s played ROCK.%n", computer.getName());
                 break;
@@ -70,7 +49,7 @@ class RuleMaker {
          *field movesCompereArray values
          *under [humanMove][computerMove] index
          */
-        int winner = game.whoWin(humanMove, computerMove);
+        int winner = game.whoWin(humanMove, cheatMove);
 
         //displaying round winner
         if (winner == 1) {
@@ -116,4 +95,5 @@ class RuleMaker {
             System.out.println();
         }
     }
+
 }

@@ -19,6 +19,9 @@ class Game {
         return actualWinsCounter;
     }
 
+    int[][] getMoveCompareArray() {
+        return moveCompareArray;
+    }
     void setActualWinsCounter(int actualWinsCounter) {
         this.actualWinsCounter = actualWinsCounter;
     }

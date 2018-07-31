@@ -1,38 +1,57 @@
 package com.kodilla.rps;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Objects;
+import java.util.stream.Stream;
+
 //Processes class Game implementing game logic
 class GameProcessor {
     private Game game;
     private Computer computer;
     private Human human;
-    private Menu menu;
+    private int roundCunter = 0;
 
-    GameProcessor(Game game, Computer computer, Human human, Menu menu) {
+    GameProcessor(Game game, Computer computer, Human human) {
         this.game = game;
         this.computer = computer;
         this.human = human;
-        this.menu = menu;
     }
 
     void run() {
+
         //displaying welcome menu
-        menu.runInitialMenu();
+        Menu.runInitialMenu();
 
         //loop while running method gameScore until number of wins reached requested by player
         while (true) {
-            RuleMaker.gameScores(game, human, computer);
+            if (settingReader()) {
+
+                RuleMaker.gameScores(game, human, computer);
+                roundCunter++;
+
+                //cheat ratio set using modulo: %2 -> 1/2, %3 -> 1/3, etc.
+                if (roundCunter % 2 == 0) {
+                    System.out.println("CHEATED ROUND");
+                    CheatProcessor.cheatGameScores(game, human, computer);
+                }
+            } else {
+                RuleMaker.gameScores(game, human, computer);
+            }
 
             //conditions compering number of wins with number of requested wins by player to complete the game
             if (!(computer.getPoints() <= game.getActualWinsCounter() && human.getPoints() <= game.getActualWinsCounter())) {
 
                 //condition checking if runGameSummaryMenu return request to terminate game or request new game
-                if(!menu.runGameSummaryMenu()) {
+                if (!Menu.runGameSummaryMenu()) {
                     //if terminate:
                     return;
-                //if new game requested
+                    //if new game requested
                 } else {
                     //calling initial menu
-                    menu.runInitialMenu();
+                    Menu.runInitialMenu();
                     //zeroing points
                     computer.setPoints(0);
                     human.setPoints(0);
@@ -43,6 +62,21 @@ class GameProcessor {
                 }
             }
         }
+    }
+
+    private boolean settingReader() {
+        StringBuilder sb = new StringBuilder();
+
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        File file = new File(Objects.requireNonNull(classLoader.getResource("GameSettings")).getFile());
+
+        try (Stream<String> fileLines = Files.lines(Paths.get(file.getPath()))) {
+            fileLines.forEach(sb::append);
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+        return sb.toString().contains("CheatingMode=ON");
     }
 }
 
