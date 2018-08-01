@@ -12,7 +12,8 @@ class GameProcessor {
     private Game game;
     private Computer computer;
     private Human human;
-    private int roundCunter = 0;
+    private int roundCounter = 0;
+    private static final String SETTINGS_FILE_PATH = "GameSettings";
 
     GameProcessor(Game game, Computer computer, Human human) {
         this.game = game;
@@ -30,10 +31,10 @@ class GameProcessor {
             if (settingReader()) {
 
                 RuleMaker.gameScores(game, human, computer);
-                roundCunter++;
+                roundCounter++;
 
                 //cheat ratio set using modulo: %2 -> 1/2, %3 -> 1/3, etc.
-                if (roundCunter % 2 == 0) {
+                if (roundCounter % 2 == 0) {
                     System.out.println("CHEATED ROUND");
                     CheatProcessor.cheatGameScores(game, human, computer);
                 }
@@ -69,7 +70,7 @@ class GameProcessor {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
-        File file = new File(Objects.requireNonNull(classLoader.getResource("GameSettings")).getFile());
+        File file = new File(Objects.requireNonNull(classLoader.getResource(SETTINGS_FILE_PATH)).getFile());
 
         try (Stream<String> fileLines = Files.lines(Paths.get(file.getPath()))) {
             fileLines.forEach(sb::append);
