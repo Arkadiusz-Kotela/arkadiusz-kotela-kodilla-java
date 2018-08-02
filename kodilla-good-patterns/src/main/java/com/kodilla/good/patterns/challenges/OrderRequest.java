@@ -2,26 +2,28 @@ package com.kodilla.good.patterns.challenges;
 
 import java.time.LocalDate;
 
-class OrderRequest {
+public class OrderRequest {
     private Customer customer;
     private Product product;
     private LocalDate orderDate;
 
-    OrderRequest(Customer customer, Product product, LocalDate orderDate) {
+    public OrderRequest(final Customer customer,
+                        final Product product,
+                        final LocalDate orderDate) {
         this.customer = customer;
         this.product = product;
         this.orderDate = orderDate;
     }
 
-    Customer getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    Product getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    LocalDate getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 }

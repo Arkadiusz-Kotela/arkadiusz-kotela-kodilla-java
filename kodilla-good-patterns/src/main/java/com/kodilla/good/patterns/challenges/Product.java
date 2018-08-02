@@ -1,26 +1,20 @@
 package com.kodilla.good.patterns.challenges;
 
-class Product {
+public class Product {
     private final String productName;
-    private int productPrice;
-    private int quantity;
+    private final double productPrice;
 
-    public Product(final String productName, int productPrice, int quantity) {
+    public Product(String productName, double productPrice) {
         this.productName = productName;
         this.productPrice = productPrice;
-        this.quantity = quantity;
     }
 
     public String getProductName() {
         return productName;
     }
 
-    public int getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
-    }
-
-    boolean isAvailable() {
-        return quantity > 0;
     }
 
     @Override

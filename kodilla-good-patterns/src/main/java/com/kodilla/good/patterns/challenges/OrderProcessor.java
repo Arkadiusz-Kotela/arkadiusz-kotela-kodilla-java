@@ -1,34 +1,42 @@
 package com.kodilla.good.patterns.challenges;
 
+import java.time.LocalDate;
+
 public class OrderProcessor {
-
     private InformationService informationService;
-    private OrderService orderService;
-    private OrderRepository orderRepository;
+    private CommerceService commerceService;
+    private CommerceRepository commerceRepository;
 
-    public OrderProcessor(InformationService informationService, OrderService orderService, OrderRepository orderRepository) {
+    public OrderProcessor(final InformationService informationService,
+                          final CommerceService commerceService,
+                          final CommerceRepository commerceRepository) {
         this.informationService = informationService;
-        this.orderService = orderService;
-        this.orderRepository = orderRepository;
+        this.commerceService = commerceService;
+        this.commerceRepository = commerceRepository;
     }
 
-    OrderDto process(OrderRequest orderRequest) {
-        boolean isAvailable = orderRequest.getProduct().isAvailable();
-        informationService.inform(orderRequest.getCustomer());
-        orderRepository.createOrder(
-                orderRequest.getCustomer(),
-                orderRequest.getProduct(),
-                orderRequest.getOrderDate());
-        if (isAvailable) {
-            return new OrderDto(
-                    orderRequest.getCustomer(),
-                    orderRequest.getProduct(),
-                    true);
+    public OrderDto process(final OrderRequest orderRequest) {
+        boolean isOrdered = commerceService.order(orderRequest.getCustomer(),
+                orderRequest.getProduct(), orderRequest.getOrderDate());
+
+        if (isOrdered) {
+            informationService.inform(orderRequest.getCustomer());
+            commerceRepository.createOrder(orderRequest.getCustomer(),
+                    orderRequest.getProduct(), orderRequest.getOrderDate());
+            return new OrderDto(orderRequest.getCustomer(),
+                    orderRequest.getProduct(), orderRequest.getOrderDate(), true);
         } else {
-            return new OrderDto(
-                    orderRequest.getCustomer(),
-                    orderRequest.getProduct(),
-                    false);
+            return new OrderDto(orderRequest.getCustomer(),
+                    orderRequest.getProduct(), orderRequest.getOrderDate(),false);
         }
     }
 }
+
+
+
+
+
+
+
+
+
