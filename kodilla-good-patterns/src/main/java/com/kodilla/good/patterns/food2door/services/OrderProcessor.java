@@ -1,5 +1,9 @@
-package com.kodilla.good.patterns.food2door;
+package com.kodilla.good.patterns.food2door.services;
 
+
+import com.kodilla.good.patterns.food2door.CommerceRepository;
+import com.kodilla.good.patterns.food2door.CommerceService;
+import com.kodilla.good.patterns.food2door.InformationService;
 
 public class OrderProcessor {
     private InformationService informationService;
@@ -21,7 +25,6 @@ public class OrderProcessor {
                         orderRequest.getSupplier(),
                         orderRequest.getFoodNameQuantity(),
                         orderRequest.getOrderDate());
-
 
         if (isOrdered) {
             informationService.inform(orderRequest.getCustomer());

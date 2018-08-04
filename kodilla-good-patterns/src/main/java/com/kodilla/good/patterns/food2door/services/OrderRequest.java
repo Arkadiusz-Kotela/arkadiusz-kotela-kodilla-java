@@ -1,4 +1,7 @@
-package com.kodilla.good.patterns.food2door;
+package com.kodilla.good.patterns.food2door.services;
+
+import com.kodilla.good.patterns.food2door.Customer;
+import com.kodilla.good.patterns.food2door.suppliers.Supplier;
 
 import java.time.LocalDate;
 

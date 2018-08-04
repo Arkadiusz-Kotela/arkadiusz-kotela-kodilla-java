@@ -1,9 +1,11 @@
-package com.kodilla.good.patterns.food2door;
+package com.kodilla.good.patterns.food2door.suppliers;
 
 public abstract class Supplier {
 
     private String supplierName;
     private String foodName;
+
+    public Supplier() {}
 
     public Supplier(String supplierName, String foodName) {
         this.supplierName = supplierName;
@@ -18,6 +20,5 @@ public abstract class Supplier {
         return foodName;
     }
 
-
-    public abstract void process();
+    public abstract boolean process(int foodQuantity);
 }
