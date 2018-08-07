@@ -1,7 +1,5 @@
 package com.kodilla.good.patterns.challenges;
 
-import java.time.LocalDate;
-
 public class OrderProcessor {
     private InformationService informationService;
     private CommerceService commerceService;

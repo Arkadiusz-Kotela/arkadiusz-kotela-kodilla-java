@@ -27,7 +27,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Passenger{" +
                 "customerFirstName='" + customerFirstName + '\'' +
                 ", customerLastName='" + customerLastName + '\'' +
                 ", customerEmail='" + customerEmail + '\'' +
