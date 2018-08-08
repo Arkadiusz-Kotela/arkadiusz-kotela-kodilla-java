@@ -8,6 +8,7 @@ public class SearchRequestRetriever {
     private Passenger passenger = new Passenger();
     private String departure;
     private String arrival;
+    private String transfer;
     private LocalDate searchDate;
 
     public SearchRequest retrieve() {
@@ -24,12 +25,16 @@ public class SearchRequestRetriever {
         System.out.print("Enter arrival airport: ");
         arrival = enteredAirportCodeChecker().toUpperCase();
 
+        System.out.print("Enter transfer airport: ");
+        transfer = enteredAirportCodeChecker().toUpperCase();
+
         searchDate = LocalDate.now();
 
         return new SearchRequest(
                 passenger,
                 departure,
                 arrival,
+                transfer,
                 searchDate);
     }
 

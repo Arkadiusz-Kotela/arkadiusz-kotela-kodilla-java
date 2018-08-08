@@ -10,9 +10,9 @@ import java.util.Arrays;
 public class Application {
     public static void main(String[] args) {
 
-        Airport waw = new Airport("WAW", "Warsaw", Arrays.asList("KTW", "LDZ", "POZ", "KRK", "SCZ"));
-        Airport ktw = new Airport("KTW", "Katowice", Arrays.asList("WAW", "ORD"));
-        Airport krk = new Airport("KRK", "Cracow", Arrays.asList("WAW", "LDZ", "POZ", "RZE"));
+        Airport waw = new Airport("WAW", "Warsaw", Arrays.asList("LDZ", "POZ", "KRK", "SCZ"));
+        Airport ktw = new Airport("KTW", "Katowice", Arrays.asList("WAW", "ORD", "YYZ", "KRK"));
+        Airport krk = new Airport("KRK", "Cracow", Arrays.asList("WAW", "LDZ", "POZ", "RZE", "JFK"));
 
         FlightNetwork flightNetwork = FlightNetwork.getInstance();
         flightNetwork.addAirport(waw);
