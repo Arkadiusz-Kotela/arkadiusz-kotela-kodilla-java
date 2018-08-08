@@ -32,56 +32,52 @@ public class SearchService implements CommerceService {
         String dest = searchRequest.getArrival();
         String trans = searchRequest.getTransfer();
 
-        //part 1
-        System.out.println("Destination available from " + dep + ": " + outbounds);
-        //part 2
-        System.out.println("Flight from origin to " + dep + ": " + findFlightsToDestination(dep));
+//        //part 1
+//        System.out.println("Destination available from " + dep + ": " + outbounds);
+//        //part 2
+//        System.out.println("Flight from origin to " + dep + ": " + findFlightsToDestination(dep));
         //part 3
-        System.out.println(findTransferConnection(dep, dest, trans));
+
+        System.out.println("Transfer flight from: "
+                + dep + " ->> " + dest + " via -> "
+                + trans + " is: " + findTransferConnection(dep, trans, dest));
 
         return outbounds.stream().anyMatch(s -> s.equals(searchRequest.getArrival()));
 
     }
 
-    public List<String> findFlightsToDestination(String destination) {
+    public List<String> findFlights(String destinations) {
         FlightNetwork flightNetwork = FlightNetwork.getInstance();
 
         List<String> airports = flightNetwork.getAirports()
                 .stream()
-                .filter(p -> p.getDestinations().contains(destination))
-                .map(Airport::getIataCode)
+                .filter(p -> p.getDestinations().contains(destinations))
+                .map(v -> v.getIataCode())
                 .collect(Collectors.toList());
 
         return airports;
     }
 
-    public boolean findTransferConnection(String departure, String destination, String transfer) {
-        List<String> transferVia = findFlightsToDestination(departure);
-
-        if (transferVia.isEmpty()) {
-            System.out.println("No transfer available via: " + transfer);
-            return false;
-        } else {
-            for (String flt : transferVia) {
-//                System.out.println("Airport: " + flt);
-//                System.out.println("Flights to " + flt + ": " + findFlightsToDestination(flt));
-                findFlightsToDestination(flt);
+    public String findTransferConnection(String departure, String transfer, String destination) {
+//        System.out.println(list);
+//        System.out.println("Flights from: " + destination + " " + findFlights(destination));
+//        System.out.println("Flights from: " + transfer + " " + findFlights(transfer));
+        String result = "";
+        for (String flight : findFlights(destination)) {
+            if (!flight.equals(transfer)) {
+//                System.out.println(flight);
+                result = "Unavailable";
+            } else {
+                for (String flight1 : findFlights(transfer)) {
+//                    System.out.println(flight1);
+                    if (!flight1.equals(departure)) {
+                        result = "Unavailable.";
+                    } else {
+                        result = "Available";
+                    }
+                }
             }
-            System.out.println("Transfer available via: " + transfer);
-
-            return true;
         }
+        return result;
     }
-
-
-//        if (list.contains(transfer)) {
-////                while (!list.isEmpty()) {
-////                findFlightsToDestination(destination);
-////            }
-////            System.out.println("Transfer flight: " + departure + " --> " + destination + " via " + transfer);
-//            return true;
-//        } else {
-//            System.out.println("No transfer flight: " + departure + " --> " + destination + " via " + transfer);
-//            return false;
-//        }
 }
