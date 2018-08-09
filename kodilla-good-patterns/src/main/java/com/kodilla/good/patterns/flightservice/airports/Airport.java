@@ -48,7 +48,10 @@ public class Airport {
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(iataCode, airportName, destinations);
+        int result = 17;
+        result = 31 *result + iataCode.hashCode();
+        result = 31 * result + airportName.hashCode();
+        result = 31 * result + destinations.hashCode();
+        return result;
     }
 }

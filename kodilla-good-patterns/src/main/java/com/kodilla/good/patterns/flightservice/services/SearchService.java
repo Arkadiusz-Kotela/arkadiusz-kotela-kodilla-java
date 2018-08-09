@@ -32,12 +32,11 @@ public class SearchService implements CommerceService {
         String dest = searchRequest.getArrival();
         String trans = searchRequest.getTransfer();
 
-//        //part 1
-//        System.out.println("Destination available from " + dep + ": " + outbounds);
-//        //part 2
-//        System.out.println("Flight from origin to " + dep + ": " + findFlightsToDestination(dep));
+        //part 1
+        System.out.println("Destination available from " + dep + ": " + outbounds);
+        //part 2
+        System.out.println("Flight from origin to " + dep + ": " + findFlights(dep));
         //part 3
-
         System.out.println("Transfer flight from: "
                 + dep + " ->> " + dest + " via -> "
                 + trans + " is: " + findTransferConnection(dep, trans, dest));
@@ -58,23 +57,14 @@ public class SearchService implements CommerceService {
         return airports;
     }
 
-    public String findTransferConnection(String departure, String transfer, String destination) {
-//        System.out.println(list);
-//        System.out.println("Flights from: " + destination + " " + findFlights(destination));
-//        System.out.println("Flights from: " + transfer + " " + findFlights(transfer));
-        String result = "";
+    public boolean findTransferConnection(String departure, String transfer, String destination) {
+        boolean result = false;
         for (String flight : findFlights(destination)) {
             if (!flight.equals(transfer)) {
-//                System.out.println(flight);
-                result = "Unavailable";
+                result = false;
             } else {
                 for (String flight1 : findFlights(transfer)) {
-//                    System.out.println(flight1);
-                    if (!flight1.equals(departure)) {
-                        result = "Unavailable.";
-                    } else {
-                        result = "Available";
-                    }
+                    result = flight1.equals(departure);
                 }
             }
         }
