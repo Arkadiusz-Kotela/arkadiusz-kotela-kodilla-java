@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CalculatorTestSuite {
@@ -30,4 +32,15 @@ public class CalculatorTestSuite {
         Assert.assertEquals(12, mul, 0);
         Assert.assertEquals(1.33, div, 0.01);
     }
+
+    @Test
+    public void testContext(){
+        //Given
+        ApplicationContext context = new AnnotationConfigApplicationContext(Calculator.class, Display.class);
+        //When & Then
+        System.out.println("========= Beans list: ===========>>");
+        Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+        System.out.println("<<========= Beans list ============");
+    }
+
 }
