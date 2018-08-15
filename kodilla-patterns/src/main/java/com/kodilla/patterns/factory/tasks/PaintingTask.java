@@ -13,7 +13,7 @@ public final class PaintingTask implements Task {
 
     @Override
     public int executeTask() {
-        if (whatToPaint == null) {
+        if (whatToPaint.isEmpty()) {
             return 0;
         } else return 1;
     }

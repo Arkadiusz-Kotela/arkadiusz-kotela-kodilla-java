@@ -13,7 +13,7 @@ public final class DrivingTask implements Task {
 
     @Override
     public int executeTask() {
-        if (using == null) {
+        if (using.isEmpty()) {
             return 0;
         } else return 1;
     }
