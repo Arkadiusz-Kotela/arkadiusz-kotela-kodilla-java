@@ -14,6 +14,10 @@ public final class Library {
     @Autowired
     private LibraryDbController libraryDbController;
 
+    public Library(LibraryDbController libraryDbController) {
+
+    }
+
 
     public void saveToDb() {
         libraryDbController.saveData();
