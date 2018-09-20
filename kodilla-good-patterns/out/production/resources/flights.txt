@@ -1,0 +1,42 @@
+vertex WAW
+vertex LDZ
+vertex KRK
+vertex POZ
+vertex KTW
+vertex SVO
+vertex CDG
+vertex LGW
+vertex JFK
+vertex ORD
+vertex VIE
+vertex ARN
+vertex LHR
+vertex TOR
+vertex LAX
+edge WAW LDZ
+edge WAW KRK
+edge WAW POZ
+edge WAW KTW
+edge WAW LGW
+edge WAW LHR
+edge WAW ARN
+edge WAW CDG
+edge WAW VIE
+edge LHR JFK
+edge LHR ORD
+edge LGW SVO
+edge CDG JFK
+edge CDG ORD
+edge ARN SVO
+edge ARN ORD
+edge ARN JFK
+edge JFK ORD
+edge JFK TOR
+edge JFK LAX
+edge ORD LAX
+edge SVO ORD
+edge SVO LAX
+edge SVO TOR
+
+
+
