@@ -1,5 +1,7 @@
 package com.kodilla.hibernate.invoice;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnJava;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -12,7 +14,7 @@ public class Item {
     private BigDecimal price;
     private int quantity;
     private BigDecimal value;
-    private Invoice items;
+    private Invoice itemInventory;
 
     public Item() {
     }
@@ -25,14 +27,14 @@ public class Item {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @NotNull
     @Column(name = "ITEM_ID", unique = true)
     public int getId() {
         return id;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne
     public Product getProduct() {
         return product;
     }
@@ -56,9 +58,8 @@ public class Item {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ITEMS")
-    public Invoice getItems() {
-        return items;
+    public Invoice getItemInventory() {
+        return itemInventory;
     }
 
     private void setId(int id) {
@@ -81,7 +82,7 @@ public class Item {
         this.product = product;
     }
 
-    public void setItems(Invoice items) {
-        this.items = items;
+    public void setItemInventory(Invoice itemInventory) {
+        this.itemInventory = itemInventory;
     }
 }

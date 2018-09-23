@@ -18,7 +18,7 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @NotNull
     @Column(name = "PRODUCT_ID", unique = true)
     public int getId() {
@@ -32,6 +32,7 @@ public class Product {
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "PRODUCT_ID")
     public Item getItem() {
         return item;
     }

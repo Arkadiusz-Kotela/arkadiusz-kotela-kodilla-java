@@ -10,7 +10,7 @@ import java.util.List;
 public class Invoice {
     private int id;
     private String number;
-    private List<Item> items = new ArrayList<>();
+    private List<Item> itemList = new ArrayList<>();
 
     public Invoice() {
     }
@@ -20,7 +20,7 @@ public class Invoice {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @NotNull
     @Column(name = "INVOICE_ID")
     public int getId() {
@@ -35,22 +35,23 @@ public class Invoice {
 
     @OneToMany(
             targetEntity = Item.class,
-            mappedBy = "items",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    public List<Item> getItems() {
-        return items;
+            mappedBy = "itemInventory",
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.EAGER
+    )
+    public List<Item> getItemList() {
+        return itemList;
     }
 
     private void setId(int id) {
         this.id = id;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
     private void setNumber(String number) {
         this.number = number;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
     }
 }

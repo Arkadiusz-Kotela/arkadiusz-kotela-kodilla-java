@@ -21,6 +21,9 @@ public class InvoiceDaoTestSuite {
     @Autowired
     ItemDao itemDao;
 
+    @Autowired
+    ProductDao productDao;
+
     @Test
     public void testInvoiceSaveDao() {
         //Given
@@ -28,19 +31,21 @@ public class InvoiceDaoTestSuite {
         Product bike = new Product("Bike");
         Product motobike = new Product("Motobike");
 
+        productDao.save(car);
+        int carId = car.getId();
+        productDao.save(bike);
+        int bikeId = bike.getId();
+        productDao.save(motobike);
+        int motobikeId = motobike.getId();
+
         Item cars = new Item(car, new BigDecimal(12000), 2, new BigDecimal(24000));
         Item bikes = new Item(bike, new BigDecimal(800), 4, new BigDecimal(3200));
         Item motobikes = new Item(motobike, new BigDecimal(4000), 3, new BigDecimal(12000));
 
+        cars.setProduct(car);
+        bikes.setProduct(bike);
+        motobikes.setProduct(motobike);
 
-        Invoice invoice = new Invoice();
-
-        invoice.getItems().add(cars);
-        invoice.getItems().add(bikes);
-        invoice.getItems().add(motobikes);
-
-
-        //When
         itemDao.save(cars);
         int carsId = cars.getId();
         itemDao.save(bikes);
@@ -48,10 +53,24 @@ public class InvoiceDaoTestSuite {
         itemDao.save(motobikes);
         int motobikesId = motobikes.getId();
 
+        Invoice invoice = new Invoice("1/2018");
+
+        invoice.getItemList().add(cars);
+        invoice.getItemList().add(bikes);
+        invoice.getItemList().add(motobikes);
+
+        cars.setItemInventory(invoice);
+        bikes.setItemInventory(invoice);
+        motobikes.setItemInventory(invoice);
+
+        //When
         invoiceDao.save(invoice);
         int invoiceId = invoice.getId();
 
         //Then
+        Assert.assertNotEquals(0, carId);
+        Assert.assertNotEquals(0, bikeId);
+        Assert.assertNotEquals(0, motobikeId);
         Assert.assertNotEquals(0, carsId);
         Assert.assertNotEquals(0, bikesId);
         Assert.assertNotEquals(0, motobikesId);
@@ -63,6 +82,9 @@ public class InvoiceDaoTestSuite {
 //            itemDao.delete(bikes);
 //            itemDao.delete(motobikes);
 //            itemDao.delete(cars);
+//            productDao.delete(car);
+//            productDao.delete(bike);
+//            productDao.delete(motobike);
 //        } catch (Exception e) {
 //            //do nothing
 //        }
