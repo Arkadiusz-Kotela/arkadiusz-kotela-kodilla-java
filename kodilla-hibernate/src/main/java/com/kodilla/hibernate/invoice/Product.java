@@ -6,9 +6,14 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true)
+    private Integer id;
+
+    @NotNull
+    @Column(name = "PRODUCT_NAME")
     private String name;
-    private Item item;
 
     public Product() {
     }
@@ -17,27 +22,14 @@ public class Product {
         this.name = name;
     }
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
-    @Column(name = "PRODUCT_ID", unique = true)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-
-    @NotNull
-    @Column(name = "PRODUCT_NAME")
     public String getName() {
         return name;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "PRODUCT_ID")
-    public Item getItem() {
-        return item;
-    }
-
-    private void setId(int id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,7 +37,4 @@ public class Product {
         this.name = name;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
 }

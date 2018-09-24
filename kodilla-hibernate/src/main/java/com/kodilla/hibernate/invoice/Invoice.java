@@ -3,55 +3,51 @@ package com.kodilla.hibernate.invoice;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "INVOICES")
+@Table(name = "INVOICE")
 public class Invoice {
-    private int id;
-    private String number;
-    private List<Item> itemList = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true)
+    private Integer id;
+
+    @Column(name = "NUMBER")
+    private String invoiceNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Item> items = new ArrayList<>();
 
     public Invoice() {
     }
 
-    public Invoice(String number) {
-        this.number = number;
+    public Invoice(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull
-    @Column(name = "INVOICE_ID")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    @NotNull
-    @Column(name = "INVOICE_NO")
-    public String getNumber() {
-        return number;
+    public String getInvoiceNumber() {
+        return invoiceNumber;
     }
 
-    @OneToMany(
-            targetEntity = Item.class,
-            mappedBy = "itemInventory",
-            cascade = CascadeType.MERGE,
-            fetch = FetchType.EAGER
-    )
-    public List<Item> getItemList() {
-        return itemList;
+    public List<Item> getItems() {
+        return items;
     }
 
-    private void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    private void setNumber(String number) {
-        this.number = number;
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
