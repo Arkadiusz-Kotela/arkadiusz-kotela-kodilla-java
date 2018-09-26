@@ -7,10 +7,10 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyByGivenFirstThreeLetters",
-        query = "SELECT COMPANY_NAME FROM companies WHERE COMPANY_NAME REGEXP :EXPRESSION",
+        query = "SELECT * FROM companies " +
+                "where company_name regexp concat('^',:STRING, '.*$');",
         resultClass = Company.class
 )
-
 
 @Entity
 @Table(name = "COMPANIES")

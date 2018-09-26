@@ -23,8 +23,6 @@ public class CompanyDaoTestSuite {
     @Autowired
     EmployeeDao employeeDao;
 
-    private Pattern pattern;
-
     @Test
     public void testSaveManyToMany(){
         //Given
@@ -106,8 +104,7 @@ public class CompanyDaoTestSuite {
         companyDao.save(company3);
 
         //When
-        pattern = Pattern.compile("^Ver");
-        List<Company> companyListNameStartsWith = companyDao.retrieveCompanyByGivenFirstThreeLetters(pattern);
+        List<Company> companyListNameStartsWith = companyDao.retrieveCompanyByGivenFirstThreeLetters("Ver");
 
         //Then
         Assert.assertEquals(2, companyListNameStartsWith.size());
