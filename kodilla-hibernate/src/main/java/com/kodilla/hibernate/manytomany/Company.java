@@ -1,11 +1,16 @@
 package com.kodilla.hibernate.manytomany;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyByGivenFirstThreeLetters",
+        query = "SELECT COMPANY_NAME FROM companies WHERE COMPANY_NAME REGEXP :EXPRESSION",
+        resultClass = Company.class
+)
+
 
 @Entity
 @Table(name = "COMPANIES")
