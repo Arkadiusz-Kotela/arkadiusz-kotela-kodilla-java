@@ -7,8 +7,16 @@ import java.util.List;
 
 @NamedQuery(
         name = "Employee.retrieveNamesByGivenName",
-        query = "FROM Employee WHERE lastName > :LASTNAME"
+        query = "FROM Employee WHERE last_name > :LASTNAME"
 )
+
+@NamedNativeQuery(
+        name = "Employee.retrieveEmployeeByGivenString",
+        query = "SELECT * FROM Employees " +
+                "where LAST_NAME like concat('%',:EXPRESSION,'%')",
+        resultClass = Employee.class
+)
+
 
 @Entity
 @Table(name = "EMPLOYEES")

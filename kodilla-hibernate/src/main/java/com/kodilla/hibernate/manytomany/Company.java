@@ -5,12 +5,21 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompanyByGivenFirstThreeLetters",
-        query = "SELECT * FROM companies " +
-                "where company_name regexp concat('^',:STRING, '.*$');",
-        resultClass = Company.class
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyByGivenFirstThreeLetters",
+                query = "SELECT * FROM companies " +
+                        "where company_name regexp concat('^',:STRING, '.*$')",
+                resultClass = Company.class
+        ),
+
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyByGivenString",
+                query = "SELECT * FROM companies " +
+                        "where company_name like concat('%',:STRING,'%')",
+                resultClass = Company.class)
+})
+
 
 @Entity
 @Table(name = "COMPANIES")
@@ -36,7 +45,7 @@ public class Company {
 
     @NotNull
     @Column(name = "COMPANY_NAME")
-    private String getName() {
+    public String getName() {
         return name;
     }
 
@@ -56,4 +65,5 @@ public class Company {
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
+
 }

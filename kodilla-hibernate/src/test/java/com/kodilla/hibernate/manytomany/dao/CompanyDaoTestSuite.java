@@ -59,14 +59,14 @@ public class CompanyDaoTestSuite {
         Assert.assertNotEquals(0, dataMaestersId);
         Assert.assertNotEquals(0, greyMatterId);
 
-        //CleanUp
-        //try {
-        //    companyDao.delete(softwareMachineId);
-        //    companyDao.delete(dataMaestersId);
-        //    companyDao.delete(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+//        //CleanUp
+//        try {
+//            companyDao.delete(softwareMachineId);
+//            companyDao.delete(dataMaestersId);
+//            companyDao.delete(greyMatterId);
+//        } catch (Exception e) {
+//            //do nothing
+//        }
     }
 
     @Test
@@ -114,4 +114,52 @@ public class CompanyDaoTestSuite {
         companyDao.delete(company2);
         companyDao.delete(company1);
     }
+
+    @Test
+    public void testSearchEmployeeUsingNativeQuery() {
+        //Given
+        Employee janekK = new Employee("Jan", "Kowalski");
+        Employee adamK = new Employee("Adam", "Kowalski");
+        Employee zenekN = new Employee("Zenon", "Nowak");
+
+        employeeDao.save(janekK);
+        employeeDao.save(adamK);
+        employeeDao.save(zenekN);
+
+        //When
+        List<Employee> employees = employeeDao.retrieveEmployeeByGivenString("owak");
+
+        //Then
+        Assert.assertEquals(1, employees.size());
+
+        //CleanUp
+        employeeDao.delete(janekK);
+        employeeDao.delete(adamK);
+        employeeDao.delete(zenekN);
+    }
+
+    @Test
+    public void testSearchCompanyUsingNativeQuery() {
+        //Given
+        Company company1 = new Company("Version_1");
+        Company company2 = new Company("Version_2");
+        Company company3 = new Company("New Company");
+
+        companyDao.save(company1);
+        companyDao.save(company2);
+        companyDao.save(company3);
+
+        //When
+        List<Company> companies = companyDao.retrieveCompanyByGivenString("ersi");
+
+        //Then
+        Assert.assertEquals(2, companies.size());
+
+        //CleanUp
+        companyDao.delete(company1);
+        companyDao.delete(company2);
+        companyDao.delete(company3);
+
+    }
+
 }
