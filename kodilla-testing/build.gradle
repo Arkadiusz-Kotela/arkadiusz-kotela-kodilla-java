@@ -12,8 +12,6 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/junit/junit
-    testCompile 'junit:junit:4.12'
-    // https://mvnrepository.com/artifact/org.mockito/mockito-all
-    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile('junit:junit:4.12')
+    testCompile('org.mockito:mockito-all:1.10.19')
 }
