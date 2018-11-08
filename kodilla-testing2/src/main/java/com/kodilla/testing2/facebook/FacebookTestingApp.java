@@ -3,13 +3,12 @@ package com.kodilla.testing2.facebook;
 import com.kodilla.testing2.config.WebDriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class FacebookTestingApp {
-    public static final String XPATH_BIRTH_DAY = "//*[@id=\"day\"]";
-    public static final String XPATH_BIRTH_MONTH = "//*[@id=\"month\"]";
-    public static final String XPATH_BIRTH_YEAR = "//*[@id=\"year\"]";
+    private static final String XPATH_BIRTH_DAY = "//*[@id=\"day\"]";
+    private static final String XPATH_BIRTH_MONTH = "//*[@id=\"month\"]";
+    private static final String XPATH_BIRTH_YEAR = "//*[@id=\"year\"]";
 
     public static void main(String[] args) {
 

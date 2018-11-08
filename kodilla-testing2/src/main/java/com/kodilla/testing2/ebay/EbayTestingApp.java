@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class EbayTestingApp {
-    public static final String SEARCHFIELD = "gh-ac";
+    private static final String SEARCHFIELD = "gh-ac";
 
     public static void main(String[] args) {
 
